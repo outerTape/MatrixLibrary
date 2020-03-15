@@ -13,5 +13,17 @@ struct Matrix{
         matrix_values.assign(n_rows*n_cols, a);
     }
 
-    
+    float& operator()(int x, int y){
+        return matrix_values[x+n_rows*y];
+    }
+
+    Matrix operator+(Matrix& rhs){
+        Matrix sum(n_rows, n_cols);
+        for(int i = 0; i < n_rows; i++){
+            for(int j = 0; j < n_cols; j++){
+                sum(i,j) = (*this)(i,j) + rhs(i,j);
+            }
+        }
+        return sum;
+    }
 };
